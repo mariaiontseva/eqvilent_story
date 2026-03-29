@@ -824,6 +824,8 @@
     bottom: calc(100% + 12px);
     left: 0;
     width: 320px;
+    max-height: 60vh;
+    overflow-y: auto;
     background: var(--bg-card);
     border: 1px solid var(--border-light);
     border-radius: 14px;
@@ -831,6 +833,23 @@
     z-index: 100;
     box-shadow: 0 16px 48px rgba(0,0,0,0.5);
     animation: popupIn 0.25s ease;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-dim) transparent;
+  }
+
+  .project-popup::-webkit-scrollbar {
+    width: 5px;
+  }
+  .project-popup::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 14px 0;
+  }
+  .project-popup::-webkit-scrollbar-thumb {
+    background: var(--accent-dim);
+    border-radius: 3px;
+  }
+  .project-popup::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
   }
 
   .project-popup.show { display: block; }
