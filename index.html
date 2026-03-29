@@ -1084,7 +1084,7 @@
     .mobile-tabs {
       display: flex;
       position: sticky;
-      top: 52px;
+      top: 0;
       z-index: 90;
       background: var(--bg);
       border-bottom: 1px solid var(--border);
@@ -2130,8 +2130,13 @@ function switchTab(tab) {
 // Set sticky header top to match nav height
 const navEl = document.querySelector('nav');
 const stickyEl = document.getElementById('sbsStickyHeader');
-if (navEl && stickyEl) {
-  const setTop = () => stickyEl.style.top = navEl.offsetHeight + 'px';
+const mobileTabsEl = document.querySelector('.mobile-tabs');
+if (navEl) {
+  const setTop = () => {
+    const h = navEl.offsetHeight + 'px';
+    if (stickyEl) stickyEl.style.top = h;
+    if (mobileTabsEl) mobileTabsEl.style.top = h;
+  };
   setTop();
   window.addEventListener('resize', setTop);
 }
