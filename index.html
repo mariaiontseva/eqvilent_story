@@ -828,12 +828,14 @@
     border: 1px solid var(--border-light);
     border-radius: 14px;
     padding: 1.5rem;
-    z-index: 50;
+    z-index: 100;
     box-shadow: 0 16px 48px rgba(0,0,0,0.5);
     animation: popupIn 0.25s ease;
   }
 
   .project-popup.show { display: block; }
+  .project-chip.popup-open { z-index: 100; }
+  .sbs-row.has-popup { position: relative; z-index: 90; }
 
   .project-popup::after {
     content: '';
@@ -880,7 +882,7 @@
   }
 
   .popup-body {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--text-secondary);
     line-height: 1.6;
     font-weight: 300;
@@ -1517,37 +1519,15 @@
       </div>
       <div class="step-projects">
         <div class="project-chip" onclick="togglePopup(this)">
-          <div class="chip-icon warm">S</div>
-          <div class="chip-text"><span class="chip-name">Client Project A</span><span class="chip-role">Product Design Lead</span></div>
-          <div class="project-popup">
-            <div class="popup-header">
-              <div class="chip-icon warm">S</div>
-              <div><div class="popup-title">Client Project A</div><div class="popup-role">Product Design Lead</div></div>
-            </div>
-            <div class="popup-body">
-              <p>Placeholder — describe the project context, your role, and what you did during problem framing.</p>
-            </div>
-          </div>
-        </div>
-        <div class="project-chip" onclick="togglePopup(this)">
-          <div class="chip-icon" style="background:rgba(168,130,255,0.15);color:#a882ff;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          </div>
-          <div class="chip-text"><span class="chip-name">Essence App</span><span class="chip-role">UX Design</span></div>
+          <div class="chip-icon" style="background:rgba(168,130,255,0.15);color:#a882ff;">E</div>
+          <div class="chip-text"><span class="chip-name">Essence App</span><span class="chip-role">Problem Framing</span></div>
           <div class="project-popup" style="width:380px;">
             <div class="popup-header">
               <div class="chip-icon" style="background:rgba(168,130,255,0.15);color:#a882ff;">E</div>
-              <div><div class="popup-title">Essence App</div><div class="popup-role">Onboarding Conversion · UX Design</div></div>
+              <div><div class="popup-title">Essence App</div><div class="popup-role">Problem Framing</div></div>
             </div>
             <div class="popup-body">
-              <p><strong>Context:</strong> Essence is an AI-powered cycle-syncing productivity app — period tracker meets smart scheduler. Aligns tasks, fitness, and self-care to the four menstrual phases.</p>
-              <p><strong>Problem:</strong> Onboarding drop-off is too high. Users must input sensitive health data (cycle dates, symptoms, goals) before seeing value. Cold-start problem — predictions are inaccurate until enough data is logged.</p>
-              <p style="margin-top:0.75rem;"><strong>Task:</strong></p>
-              <p>1. Audit current onboarding funnel — identify where users drop off and why (analytics + session recordings).</p>
-              <p>2. Reduce data-input friction — explore progressive disclosure: show value first, ask for details later.</p>
-              <p>3. Solve the B2B vs B2C fork — employees invited by company vs individual signup have different trust levels and motivations.</p>
-              <p>4. Balance wellness vs productivity framing in first 60 seconds — users expect "60% productivity tool, 40% period tracking."</p>
-              <p>5. Design and test 2–3 onboarding variants to improve trial-to-paid conversion.</p>
+              <p>Placeholder — content coming soon.</p>
             </div>
           </div>
         </div>
@@ -1575,7 +1555,6 @@
             </div>
             <div class="popup-body">
               <p><strong>Goal:</strong> Increase revenue by simplifying pricing tiers.</p>
-              <p><strong>Key changes:</strong> Remove intermediate importer/analytics tier — just Basic vs Advanced. Rename plans to Essentials vs Pro. Applies to new plan group only.</p>
               <p style="margin-top:0.75rem;"><strong>Option 1 — Pay per Profile</strong><br>Buffer-style: $5/profile (basic) vs $10/profile (advanced + unlimited users &amp; workspaces). Need to figure out add-on fit (queued posts, timeslots, categories).</p>
               <p><strong>Option 2 — Solo plan more limited</strong><br>5 profiles on Solo (matching competitors), but restrict: no user add-ons, no workspaces, no advanced importer/analytics, tighter limits on posts/timeslots/categories.</p>
               <p style="margin-top:0.75rem;font-style:italic;color:var(--text-muted);">TODO: analyse how many Solo users have workspaces/users.</p>
@@ -1598,7 +1577,7 @@
         <span class="tool-tag">Miro</span>
       </div>
       <div class="step-projects">
-        <div class="project-chip"><div class="chip-icon warm">S</div><div class="chip-text"><span class="chip-name">Client Project A</span><span class="chip-role">Full competitive audit</span></div></div>
+        <div class="project-chip"><div class="chip-icon" style="background:rgba(168,130,255,0.15);color:#a882ff;">E</div><div class="chip-text"><span class="chip-name">Essence App</span><span class="chip-role">Full competitive audit</span></div></div>
       </div>
     </div>
     <div class="sbs-divider"><div class="sbs-step-num">02</div></div>
@@ -1624,7 +1603,7 @@
         <span class="tool-tag">Affinity Mapping</span>
       </div>
       <div class="step-projects">
-        <div class="project-chip"><div class="chip-icon cool">M</div><div class="chip-text"><span class="chip-name">Client Project B</span><span class="chip-role">12 user interviews</span></div></div>
+        <div class="project-chip"><div class="chip-icon" style="background:rgba(168,130,255,0.15);color:#a882ff;">E</div><div class="chip-text"><span class="chip-name">Essence App</span><span class="chip-role">12 user interviews</span></div></div>
       </div>
     </div>
     <div class="sbs-divider"><div class="sbs-step-num">03</div></div>
@@ -1638,8 +1617,7 @@
         <span class="tool-tag">Vercel</span>
       </div>
       <div class="step-projects">
-        <div class="project-chip"><div class="chip-icon purple">R</div><div class="chip-text"><span class="chip-name">Client Project D</span><span class="chip-role">Working prototype in 3 days</span></div></div>
-        <div class="project-chip"><div class="chip-icon warm">P</div><div class="chip-text"><span class="chip-name">Client Project E</span><span class="chip-role">React dashboard</span></div></div>
+        <div class="project-chip"><div class="chip-icon" style="background:rgba(255,107,0,0.15);color:#ff6b00;">SQ</div><div class="chip-text"><span class="chip-name">SmarterQueue</span><span class="chip-role">Working prototype in 3 days</span></div></div>
       </div>
     </div>
   </div>
@@ -1656,9 +1634,7 @@
         <span class="tool-tag">Pen & Paper</span>
       </div>
       <div class="step-projects">
-        <div class="project-chip"><div class="chip-icon warm">S</div><div class="chip-text"><span class="chip-name">Client Project A</span><span class="chip-role">Design system + 80 screens</span></div></div>
-        <div class="project-chip"><div class="chip-icon cool">M</div><div class="chip-text"><span class="chip-name">Client Project B</span><span class="chip-role">Dashboard redesign</span></div></div>
-        <div class="project-chip"><div class="chip-icon green">H</div><div class="chip-text"><span class="chip-name">Client Project C</span><span class="chip-role">Mobile app</span></div></div>
+        <div class="project-chip"><div class="chip-icon" style="background:rgba(168,130,255,0.15);color:#a882ff;">E</div><div class="chip-text"><span class="chip-name">Essence App</span><span class="chip-role">Design system + 80 screens</span></div></div>
       </div>
     </div>
     <div class="sbs-divider"><div class="sbs-step-num">04</div></div>
@@ -1723,7 +1699,7 @@
         <span class="tool-tag">CI/CD</span>
       </div>
       <div class="step-projects">
-        <div class="project-chip"><div class="chip-icon purple">R</div><div class="chip-text"><span class="chip-name">Client Project D</span><span class="chip-role">Prototype → production in 2 weeks</span></div></div>
+        <div class="project-chip"><div class="chip-icon" style="background:rgba(255,107,0,0.15);color:#ff6b00;">SQ</div><div class="chip-text"><span class="chip-name">SmarterQueue</span><span class="chip-role">Prototype → production in 2 weeks</span></div></div>
       </div>
     </div>
   </div>
@@ -1889,12 +1865,12 @@ function togglePopup(chip) {
   const popup = chip.querySelector('.project-popup');
   const wasOpen = popup.classList.contains('show');
   // close all popups first
-  document.querySelectorAll('.project-popup.show').forEach(p => p.classList.remove('show'));
-  if (!wasOpen) popup.classList.add('show');
+  document.querySelectorAll('.project-popup.show').forEach(p => { p.classList.remove('show'); p.closest('.project-chip').classList.remove('popup-open'); const r = p.closest('.sbs-row'); if (r) r.classList.remove('has-popup'); });
+  if (!wasOpen) { popup.classList.add('show'); chip.classList.add('popup-open'); const r = chip.closest('.sbs-row'); if (r) r.classList.add('has-popup'); }
 }
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.project-chip')) {
-    document.querySelectorAll('.project-popup.show').forEach(p => p.classList.remove('show'));
+    document.querySelectorAll('.project-popup.show').forEach(p => { p.classList.remove('show'); p.closest('.project-chip').classList.remove('popup-open'); const r = p.closest('.sbs-row'); if (r) r.classList.remove('has-popup'); });
   }
 });
 
