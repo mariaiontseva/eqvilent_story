@@ -1281,6 +1281,164 @@
     color: var(--accent-light);
   }
 
+  /* === PROJECT MODAL === */
+  .project-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    overflow-y: auto;
+    padding: 3rem 2rem;
+    animation: modalFadeIn 0.3s ease;
+  }
+
+  .project-modal-overlay.show { display: flex; justify-content: center; }
+
+  @keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .project-modal {
+    width: 100%;
+    max-width: 1100px;
+    position: relative;
+  }
+
+  .modal-close {
+    position: fixed;
+    top: 1.5rem; right: 2rem;
+    width: 40px; height: 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 50%;
+    color: var(--text-primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10001;
+    transition: all 0.2s;
+  }
+
+  .modal-close:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-dim);
+  }
+
+  .modal-header {
+    margin-bottom: 2rem;
+  }
+
+  .modal-header h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  .modal-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .modal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 400;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+
+  .modal-link-primary {
+    background: var(--accent-dim);
+    color: var(--text-primary);
+  }
+  .modal-link-primary:hover { background: var(--accent); }
+
+  .modal-link-secondary {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+  }
+  .modal-link-secondary:hover { border-color: var(--accent-dim); }
+
+  .modal-screens {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .modal-screens { grid-template-columns: 1fr; }
+    .project-modal-overlay { padding: 1.5rem 1rem; }
+  }
+
+  .browser-frame {
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  }
+
+  .browser-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 14px;
+    background: #222;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .browser-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .browser-dot.red { background: #ff5f57; }
+  .browser-dot.yellow { background: #ffbd2e; }
+  .browser-dot.green { background: #28c840; }
+
+  .browser-url {
+    margin-left: 8px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    background: rgba(255,255,255,0.05);
+    padding: 3px 10px;
+    border-radius: 4px;
+    flex: 1;
+  }
+
+  .browser-frame img {
+    width: 100%;
+    display: block;
+  }
+
+  .browser-frame .screen-label {
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    background: #1a1a1a;
+    border-top: 1px solid var(--border);
+  }
+
   /* === TOOLS GRID === */
   .tools-section {
     padding: 6rem 3rem;
@@ -1779,20 +1937,23 @@
     </p>
 
     <div class="live-grid reveal-stagger">
-      <a href="https://github.com/mariaiontseva" class="live-card" target="_blank">
+      <div class="live-card" onclick="openModal('sqModal')" style="cursor:pointer;">
         <div class="live-card-header">
-          <span class="live-card-type">Design + Code</span>
+          <span class="live-card-type">Design System + Product Design</span>
           <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
         </div>
-        <h3>Portfolio & Prototypes</h3>
-        <p>Interactive prototypes built with Claude Code and shipped directly. Design explorations that are also production code.</p>
-        <div class="live-card-tags">
-          <span>React</span>
-          <span>HTML/CSS</span>
-          <span>Claude Code</span>
-          <span>Vercel</span>
+        <div class="live-card-preview-wrap">
+          <img src="sq-ds-cover.png" alt="SmarterQueue Design System">
         </div>
-      </a>
+        <h3>SmarterQueue</h3>
+        <p>Design system, pricing redesign, and product design for a social media management platform serving thousands of users.</p>
+        <div class="live-card-tags">
+          <span>Figma</span>
+          <span>Design System</span>
+          <span>Product Design</span>
+          <span>HTML/CSS</span>
+        </div>
+      </div>
 
       <a href="https://web-production-5a50.up.railway.app/" class="live-card" target="_blank">
         <div class="live-card-header">
@@ -1951,7 +2112,89 @@ window.addEventListener('scroll', () => {
   const opacity = Math.min(scrolled / 200, 0.95);
   nav.style.background = `rgba(8,8,8,${0.7 + opacity * 0.25})`;
 });
+// Project modal
+function openModal(id) {
+  document.getElementById(id).classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('show');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.project-modal-overlay.show').forEach(m => { m.classList.remove('show'); });
+    document.body.style.overflow = '';
+  }
+});
 </script>
+
+<!-- SmarterQueue Modal -->
+<div class="project-modal-overlay" id="sqModal" onclick="if(event.target===this)closeModal('sqModal')">
+  <button class="modal-close" onclick="closeModal('sqModal')">&times;</button>
+  <div class="project-modal">
+    <div class="modal-header">
+      <h2>SmarterQueue</h2>
+      <p>Design system, pricing redesign, and product design for a social media management platform.</p>
+    </div>
+    <div class="modal-links">
+      <a href="https://smarterqueue.com/" target="_blank" class="modal-link modal-link-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Live Product
+      </a>
+      <a href="https://mariaiontseva.github.io/sq-pricing/" target="_blank" class="modal-link modal-link-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        Pricing Prototype
+      </a>
+      <a href="https://orcadesign.io/work/smarterqueue-ds" target="_blank" class="modal-link modal-link-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        Design System Docs
+      </a>
+    </div>
+    <div class="modal-screens">
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">smarterqueue.com</div>
+        </div>
+        <img src="sq-ds-cover.png" alt="Screen 1">
+        <div class="screen-label">Placeholder — screen 1</div>
+      </div>
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">smarterqueue.com</div>
+        </div>
+        <img src="sq-ds-cover.png" alt="Screen 2">
+        <div class="screen-label">Placeholder — screen 2</div>
+      </div>
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">smarterqueue.com</div>
+        </div>
+        <img src="sq-ds-cover.png" alt="Screen 3">
+        <div class="screen-label">Placeholder — screen 3</div>
+      </div>
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">smarterqueue.com</div>
+        </div>
+        <img src="sq-ds-cover.png" alt="Screen 4">
+        <div class="screen-label">Placeholder — screen 4</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
