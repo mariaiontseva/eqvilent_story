@@ -1873,7 +1873,7 @@ function togglePopup(chip) {
   const wasOpen = popup.classList.contains('show');
   // close all popups first
   document.querySelectorAll('.project-popup.show').forEach(p => { p.classList.remove('show'); p.closest('.project-chip').classList.remove('popup-open'); const r = p.closest('.sbs-row'); if (r) r.classList.remove('has-popup'); });
-  if (!wasOpen) { popup.classList.add('show'); chip.classList.add('popup-open'); const r = chip.closest('.sbs-row'); if (r) r.classList.add('has-popup'); setTimeout(() => popup.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50); }
+  if (!wasOpen) { popup.classList.add('show'); chip.classList.add('popup-open'); const r = chip.closest('.sbs-row'); if (r) r.classList.add('has-popup'); setTimeout(() => { const rect = popup.getBoundingClientRect(); if (rect.top < 0) window.scrollBy({ top: rect.top - 20, behavior: 'smooth' }); else if (rect.bottom > window.innerHeight) window.scrollBy({ top: rect.bottom - window.innerHeight + 20, behavior: 'smooth' }); }, 50); }
 }
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.project-chip')) {
