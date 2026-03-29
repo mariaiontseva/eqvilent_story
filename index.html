@@ -1527,7 +1527,14 @@
               <div><div class="popup-title">Essence App</div><div class="popup-role">Problem Framing</div></div>
             </div>
             <div class="popup-body">
-              <p>Placeholder — content coming soon.</p>
+              <p><strong>Context:</strong> Essence is an AI-powered cycle-syncing productivity app — a female wellbeing app that aligns tasks, fitness, and self-care to the four menstrual phases.</p>
+              <p><strong>Problem:</strong> Onboarding drop-off is too high. Users must input sensitive health data (cycle dates, symptoms, goals) before seeing value. Cold-start problem — predictions are inaccurate until enough data is logged.</p>
+              <p style="margin-top:0.75rem;"><strong>Task:</strong></p>
+              <p>1. Audit current onboarding funnel — identify where users drop off and why (analytics + session recordings).</p>
+              <p>2. Reduce data-input friction — explore progressive disclosure: show value first, ask for details later.</p>
+              <p>3. Solve the B2B vs B2C fork — employees invited by company vs individual signup have different trust levels and motivations.</p>
+              <p>4. Balance wellness vs productivity framing in first 60 seconds.</p>
+              <p>5. Design and test 2–3 onboarding variants to improve trial-to-paid conversion.</p>
             </div>
           </div>
         </div>
@@ -1866,7 +1873,7 @@ function togglePopup(chip) {
   const wasOpen = popup.classList.contains('show');
   // close all popups first
   document.querySelectorAll('.project-popup.show').forEach(p => { p.classList.remove('show'); p.closest('.project-chip').classList.remove('popup-open'); const r = p.closest('.sbs-row'); if (r) r.classList.remove('has-popup'); });
-  if (!wasOpen) { popup.classList.add('show'); chip.classList.add('popup-open'); const r = chip.closest('.sbs-row'); if (r) r.classList.add('has-popup'); }
+  if (!wasOpen) { popup.classList.add('show'); chip.classList.add('popup-open'); const r = chip.closest('.sbs-row'); if (r) r.classList.add('has-popup'); setTimeout(() => popup.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50); }
 }
 document.addEventListener('click', (e) => {
   if (!e.target.closest('.project-chip')) {
