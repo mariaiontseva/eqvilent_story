@@ -40,7 +40,6 @@
     background: var(--bg);
     color: var(--text-primary);
     line-height: 1.6;
-    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -59,9 +58,9 @@
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
-    padding: 1.5rem 3rem;
+    padding: 1.25rem 3rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     backdrop-filter: blur(20px);
     background: rgba(8,8,8,0.7);
@@ -70,29 +69,15 @@
 
   .nav-name {
     font-family: 'Fraunces', serif;
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.4rem;
+    font-weight: 300;
     color: var(--text-primary);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
 
   .nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
+    display: none;
   }
-
-  .nav-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    transition: color 0.3s;
-  }
-
-  .nav-links a:hover { color: var(--accent); }
 
   /* === SPLIT HERO === */
   .split-hero {
@@ -163,12 +148,12 @@
   }
 
   .panel-before .panel-number {
-    color: rgba(106,139,196,0.12);
+    color: rgba(106,139,196,0.6);
     animation-delay: 0.2s;
   }
 
   .panel-after .panel-number {
-    color: rgba(196,149,106,0.15);
+    color: rgba(196,149,106,0.65);
     animation-delay: 0.4s;
   }
 
@@ -346,7 +331,7 @@
     gap: 0.35rem;
     font-family: 'Caveat', cursive;
     font-size: 1.2rem;
-    color: rgba(196,149,106,0.6);
+    color: rgba(196,149,106,0.8);
     white-space: nowrap;
     pointer-events: none;
     line-height: 1;
@@ -828,11 +813,168 @@
   .chip-name { font-weight: 500; }
   .chip-role { font-size: 0.7rem; color: var(--text-muted); }
 
+  /* === PROJECT POPUP === */
+  .project-chip {
+    position: relative;
+  }
+
+  .project-popup {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 0;
+    width: 320px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 14px;
+    padding: 1.5rem;
+    z-index: 50;
+    box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    animation: popupIn 0.25s ease;
+  }
+
+  .project-popup.show { display: block; }
+
+  .project-popup::after {
+    content: '';
+    position: absolute;
+    top: 100%; left: 24px;
+    border: 8px solid transparent;
+    border-top-color: var(--bg-card);
+  }
+
+  @keyframes popupIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .popup-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .popup-header .chip-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .popup-title {
+    font-family: 'Fraunces', serif;
+    font-size: 1.1rem;
+    font-weight: 400;
+  }
+
+  .popup-role {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+
+  .popup-body {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .popup-body p { margin-bottom: 0.5rem; }
+  .popup-body p:last-child { margin-bottom: 0; }
+
+  .popup-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+
+  .popup-tools span {
+    font-size: 0.65rem;
+    padding: 0.2rem 0.5rem;
+    background: rgba(196,149,106,0.08);
+    border: 1px solid rgba(196,149,106,0.12);
+    border-radius: 4px;
+    color: var(--accent-light);
+  }
+
+  @media (max-width: 768px) {
+    .project-popup {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      width: 100%;
+      border-radius: 14px 14px 0 0;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    .project-popup::after { display: none; }
+  }
+
   /* === SIDE-BY-SIDE DEEP DIVE === */
+  .sbs-sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 80;
+    display: grid;
+    grid-template-columns: 1fr 50px 1fr;
+    background: rgba(8,8,8,0.95);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sbs-sticky-label {
+    padding: 0.75rem 2.5rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 500;
+  }
+
+  .sbs-sticky-label.label-before {
+    color: #7a9bd4;
+    text-align: left;
+  }
+
+  .sbs-sticky-label.label-after {
+    color: var(--accent);
+    text-align: left;
+  }
+
+  .sbs-sticky-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .sbs-sticky-divider::before {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: var(--border-light);
+  }
+
+  @media (max-width: 768px) {
+    .sbs-sticky-header { display: none; }
+  }
+
   .side-by-side {
-    padding: 2rem 0 4rem;
+    padding: 0 0 4rem !important;
+    position: relative;
+  }
+
+  .sbs-row {
     max-width: 1200px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .sbs-row {
@@ -1268,14 +1410,14 @@
       <li class="has-note">
         <span class="dot cond-dot"></span>Competitor Analysis
         <span class="hand-note">
-          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
           often skipped!
         </span>
       </li>
       <li class="has-note">
         <span class="dot cond-dot"></span>User Interviews
         <span class="hand-note">
-          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
           rarely done properly
         </span>
       </li>
@@ -1284,16 +1426,12 @@
       <li class="has-note">
         <span class="dot cond-dot"></span>Usability Testing
         <span class="hand-note">
-          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
           budget cuts here
         </span>
       </li>
       <li><span class="dot core-dot"></span>Dev Handoff & QA</li>
     </ul>
-    <div class="panel-legend">
-      <div class="panel-legend-item"><span class="dot core-dot"></span> Every project</div>
-      <div class="panel-legend-item"><span class="dot cond-dot"></span> Select clients</div>
-    </div>
     <div class="panel-stat">
       <div class="panel-stat-number">4–8 weeks</div>
       <div class="panel-stat-label">Concept → First user test</div>
@@ -1318,7 +1456,7 @@
       <li class="has-note">
         <span class="dot cond-dot"></span>Quick Competitive Scan
         <span class="hand-note">
-          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
           if they exist
         </span>
       </li>
@@ -1328,21 +1466,17 @@
       <li class="has-note">
         <span class="dot cond-dot"></span>Design System Docs
         <span class="hand-note">
-          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
           when scaling up
         </span>
       </li>
       <li class="has-note"><span class="dot cond-dot"></span>Ship to Production
         <span class="hand-note">
-          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.5)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          <svg width="20" height="12" viewBox="0 0 20 12" fill="none"><path d="M2 9C5 3 12 2 18 5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round"/><path d="M15 2.5 L18.5 5.5 L14 6.5" stroke="rgba(196,149,106,0.75)" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
           if dev is AI-friendly
         </span>
       </li>
     </ul>
-    <div class="panel-legend">
-      <div class="panel-legend-item"><span class="dot core-dot"></span> Every project</div>
-      <div class="panel-legend-item"><span class="dot cond-dot"></span> Select clients</div>
-    </div>
     <div class="panel-stat">
       <div class="panel-stat-number">2–5 days</div>
       <div class="panel-stat-label">Concept → First user test</div>
@@ -1363,6 +1497,11 @@
   <button class="mobile-tab" onclick="switchTab('after')">2025 →</button>
 </div>
 <section class="side-by-side" id="method-1" data-active-tab="before"><span id="method-2"></span>
+  <div class="sbs-sticky-header" id="sbsStickyHeader">
+    <div class="sbs-sticky-label label-before">Before 2025 · Structured Method</div>
+    <div class="sbs-sticky-divider"></div>
+    <div class="sbs-sticky-label label-after">2025 → · Rapid Method</div>
+  </div>
 
   <!-- ROW 1: Problem Framing -->
   <div class="sbs-row reveal">
@@ -1377,8 +1516,41 @@
         <span class="tool-tag">Stakeholder Interviews</span>
       </div>
       <div class="step-projects">
-        <div class="project-chip"><div class="chip-icon warm">S</div><div class="chip-text"><span class="chip-name">Client Project A</span><span class="chip-role">Product Design Lead</span></div></div>
-        <div class="project-chip"><div class="chip-icon cool">M</div><div class="chip-text"><span class="chip-name">Client Project B</span><span class="chip-role">UX Design</span></div></div>
+        <div class="project-chip" onclick="togglePopup(this)">
+          <div class="chip-icon warm">S</div>
+          <div class="chip-text"><span class="chip-name">Client Project A</span><span class="chip-role">Product Design Lead</span></div>
+          <div class="project-popup">
+            <div class="popup-header">
+              <div class="chip-icon warm">S</div>
+              <div><div class="popup-title">Client Project A</div><div class="popup-role">Product Design Lead</div></div>
+            </div>
+            <div class="popup-body">
+              <p>Placeholder — describe the project context, your role, and what you did during problem framing.</p>
+            </div>
+          </div>
+        </div>
+        <div class="project-chip" onclick="togglePopup(this)">
+          <div class="chip-icon" style="background:rgba(168,130,255,0.15);color:#a882ff;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="chip-text"><span class="chip-name">Essence App</span><span class="chip-role">UX Design</span></div>
+          <div class="project-popup" style="width:380px;">
+            <div class="popup-header">
+              <div class="chip-icon" style="background:rgba(168,130,255,0.15);color:#a882ff;">E</div>
+              <div><div class="popup-title">Essence App</div><div class="popup-role">Onboarding Conversion · UX Design</div></div>
+            </div>
+            <div class="popup-body">
+              <p><strong>Context:</strong> Essence is an AI-powered cycle-syncing productivity app — period tracker meets smart scheduler. Aligns tasks, fitness, and self-care to the four menstrual phases.</p>
+              <p><strong>Problem:</strong> Onboarding drop-off is too high. Users must input sensitive health data (cycle dates, symptoms, goals) before seeing value. Cold-start problem — predictions are inaccurate until enough data is logged.</p>
+              <p style="margin-top:0.75rem;"><strong>Task:</strong></p>
+              <p>1. Audit current onboarding funnel — identify where users drop off and why (analytics + session recordings).</p>
+              <p>2. Reduce data-input friction — explore progressive disclosure: show value first, ask for details later.</p>
+              <p>3. Solve the B2B vs B2C fork — employees invited by company vs individual signup have different trust levels and motivations.</p>
+              <p>4. Balance wellness vs productivity framing in first 60 seconds — users expect "60% productivity tool, 40% period tracking."</p>
+              <p>5. Design and test 2–3 onboarding variants to improve trial-to-paid conversion.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="sbs-divider"><div class="sbs-step-num">01</div></div>
@@ -1391,7 +1563,25 @@
         <span class="tool-tag">Slack</span>
       </div>
       <div class="step-projects">
-        <div class="project-chip"><div class="chip-icon purple">R</div><div class="chip-text"><span class="chip-name">Client Project D</span><span class="chip-role">1-page brief</span></div></div>
+        <div class="project-chip" onclick="togglePopup(this)">
+          <div class="chip-icon" style="background:rgba(255,107,0,0.15);color:#ff6b00;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <div class="chip-text"><span class="chip-name">SmarterQueue</span><span class="chip-role">Pricing redesign brief</span></div>
+          <div class="project-popup" style="width:380px;">
+            <div class="popup-header">
+              <div class="chip-icon" style="background:rgba(255,107,0,0.15);color:#ff6b00;">SQ</div>
+              <div><div class="popup-title">SmarterQueue</div><div class="popup-role">Pricing Redesign · Problem Framing</div></div>
+            </div>
+            <div class="popup-body">
+              <p><strong>Goal:</strong> Increase revenue by simplifying pricing tiers.</p>
+              <p><strong>Key changes:</strong> Remove intermediate importer/analytics tier — just Basic vs Advanced. Rename plans to Essentials vs Pro. Applies to new plan group only.</p>
+              <p style="margin-top:0.75rem;"><strong>Option 1 — Pay per Profile</strong><br>Buffer-style: $5/profile (basic) vs $10/profile (advanced + unlimited users &amp; workspaces). Need to figure out add-on fit (queued posts, timeslots, categories).</p>
+              <p><strong>Option 2 — Solo plan more limited</strong><br>5 profiles on Solo (matching competitors), but restrict: no user add-ons, no workspaces, no advanced importer/analytics, tighter limits on posts/timeslots/categories.</p>
+              <p style="margin-top:0.75rem;font-style:italic;color:var(--text-muted);">TODO: analyse how many Solo users have workspaces/users.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1626,7 +1816,6 @@
   </p>
 
   <div class="tools-grid reveal-stagger">
-    <!-- Design -->
     <div class="tool-item">
       <svg viewBox="0 0 24 24" fill="#F24E1E"><path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z"/><path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z"/><path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z"/><path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z"/><path d="M5 12a3.5 3.5 0 0 1 3.5-3.5H12v7H8.5A3.5 3.5 0 0 1 5 12z"/></svg>
       <span>Figma</span>
@@ -1636,11 +1825,6 @@
       <span>FigJam</span>
     </div>
     <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
-      <span>Framer</span>
-    </div>
-    <!-- Code / AI -->
-    <div class="tool-item">
       <svg viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
       <span>Claude Code</span>
     </div>
@@ -1649,51 +1833,8 @@
       <span>Cursor</span>
     </div>
     <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#007ACC" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      <span>VS Code</span>
-    </div>
-    <!-- Frontend -->
-    <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#61DAFB" stroke-width="1.5"><circle cx="12" cy="12" r="2.5"/><ellipse cx="12" cy="12" rx="10" ry="4"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(120 12 12)"/></svg>
-      <span>React</span>
-    </div>
-    <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#F7DF1E" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M12 15V9"/><path d="M9 18c0-1 .5-2 3-2s3 1 3 2"/></svg>
-      <span>JavaScript</span>
-    </div>
-    <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#3178C6" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6"/><path d="M12 9v9"/></svg>
-      <span>TypeScript</span>
-    </div>
-    <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2"><path d="M12 6C6 6 3 12 6 12s3-6 6-6 6 6 6 6-3 6-6 6"/></svg>
-      <span>Tailwind CSS</span>
-    </div>
-    <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#E34F26" stroke-width="2"><path d="M4 3l1.6 18L12 22l6.4-1L20 3H4z"/></svg>
-      <span>HTML/CSS</span>
-    </div>
-    <!-- Collaboration -->
-    <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#E01E5A" stroke-width="2"><path d="M14.5 2a2.5 2.5 0 0 0 0 5H17V4.5A2.5 2.5 0 0 0 14.5 2z"/><path d="M7 7h5v5H7z"/></svg>
-      <span>Slack</span>
-    </div>
-    <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="currentColor" style="color:#f5f5f5"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-      <span>GitHub</span>
-    </div>
-    <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#5468FF" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
-      <span>Linear</span>
-    </div>
-    <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 12h8"/></svg>
-      <span>Notion</span>
-    </div>
-    <!-- Deploy -->
-    <div class="tool-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2L2 19.5h20L12 2z"/></svg>
-      <span>Vercel</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" stroke-width="2"><path d="M4 4h6v6H4z"/><path d="M14 4h6v6h-6z"/><path d="M4 14h6v6H4z"/><path d="M17 14v3h-3"/><path d="M14 20h3v-3"/><path d="M20 14v6h-3"/></svg>
+      <span>Stitch</span>
     </div>
   </div>
 </section>
@@ -1731,6 +1872,20 @@ document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
   observer.observe(el);
 });
 
+// Project popup toggle
+function togglePopup(chip) {
+  const popup = chip.querySelector('.project-popup');
+  const wasOpen = popup.classList.contains('show');
+  // close all popups first
+  document.querySelectorAll('.project-popup.show').forEach(p => p.classList.remove('show'));
+  if (!wasOpen) popup.classList.add('show');
+}
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.project-chip')) {
+    document.querySelectorAll('.project-popup.show').forEach(p => p.classList.remove('show'));
+  }
+});
+
 // Mobile tab switching
 function switchTab(tab) {
   const section = document.querySelector('.side-by-side');
@@ -1741,6 +1896,15 @@ function switchTab(tab) {
     if (tab === 'before' && t.textContent.includes('Before')) t.classList.add('active-before');
     if (tab === 'after' && t.textContent.includes('2025')) t.classList.add('active-after');
   });
+}
+
+// Set sticky header top to match nav height
+const navEl = document.querySelector('nav');
+const stickyEl = document.getElementById('sbsStickyHeader');
+if (navEl && stickyEl) {
+  const setTop = () => stickyEl.style.top = navEl.offsetHeight + 'px';
+  setTop();
+  window.addEventListener('resize', setTop);
 }
 
 // Nav background opacity on scroll
