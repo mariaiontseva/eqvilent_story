@@ -1172,12 +1172,21 @@
   }
 
   .live-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    display: flex;
     gap: 1.25rem;
     max-width: 1100px;
     margin: 0 auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-dim) transparent;
   }
+
+  .live-grid::-webkit-scrollbar { height: 5px; }
+  .live-grid::-webkit-scrollbar-track { background: transparent; }
+  .live-grid::-webkit-scrollbar-thumb { background: var(--accent-dim); border-radius: 3px; }
 
   .live-card {
     padding: 1.75rem;
@@ -1189,6 +1198,10 @@
     transition: all 0.35s ease;
     position: relative;
     overflow: hidden;
+    min-width: 320px;
+    max-width: 340px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
   }
 
   .live-card::before {
@@ -1571,7 +1584,7 @@
     section { padding: 3rem 1.5rem; }
     .method-header { flex-direction: column; gap: 1rem; }
     .live-work { padding: 3rem 1.5rem; }
-    .live-grid { grid-template-columns: 1fr; }
+    .live-grid .live-card { min-width: 280px; }
     .footer-links { flex-direction: column; align-items: center; gap: 1rem; }
     .tools-grid { gap: 0.6rem; }
     .tool-item { padding: 0.5rem 0.9rem; }
@@ -2001,6 +2014,33 @@
           <span>Vue</span>
           <span>Three.js</span>
           <span>Experiment</span>
+        </div>
+      </a>
+
+      <a href="https://orcadesign.io" target="_blank" class="live-card">
+        <div class="live-card-header">
+          <span class="live-card-type">Design + Code</span>
+          <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <h3>OrcaDesign</h3>
+        <p>Personal design studio website — portfolio, case studies, and service pages. Built and shipped with Claude Code.</p>
+        <div class="live-card-tags">
+          <span>HTML/CSS</span>
+          <span>Claude Code</span>
+        </div>
+      </a>
+
+      <a href="https://mariaiontseva.github.io/sq-pricing/" target="_blank" class="live-card">
+        <div class="live-card-header">
+          <span class="live-card-type">Prototype</span>
+          <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <h3>SQ Pricing Page</h3>
+        <p>Interactive pricing page prototype for SmarterQueue — designed and coded as a working demo.</p>
+        <div class="live-card-tags">
+          <span>HTML/CSS</span>
+          <span>Claude Code</span>
+          <span>GitHub Pages</span>
         </div>
       </a>
     </div>
