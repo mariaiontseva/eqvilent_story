@@ -1204,23 +1204,11 @@
     scroll-snap-align: start;
   }
 
-  .live-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--gradient-warm);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
   .live-card:hover {
-    border-color: var(--accent-dim);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    border-color: rgba(196,149,106,0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(196,149,106,0.08), 0 0 40px -10px rgba(196,149,106,0.2);
   }
-
-  .live-card:hover::before { opacity: 1; }
 
   .live-card-header {
     display: flex;
@@ -1398,9 +1386,92 @@
     gap: 2rem;
   }
 
+  /* BlueRoll layout — 3 desktop screens on top, mobile trio below */
+  .modal-screens.layout-blueroll {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .modal-screens.layout-blueroll .mobile-showcase {
+    grid-column: 1 / -1;
+  }
+
+  .mobile-showcase {
+    margin-top: 1rem;
+    background: linear-gradient(135deg, rgba(196,149,106,0.07) 0%, rgba(196,149,106,0.02) 100%);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.5rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    align-items: center;
+  }
+
+  .mobile-showcase-label {
+    font-size: 0.7rem;
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  .mobile-trio {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .phone-frame {
+    flex: 0 0 auto;
+    width: 200px;
+    max-width: 100%;
+    background: #0a0a0a;
+    border: 1.5px solid #2a2520;
+    border-radius: 28px;
+    padding: 10px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.03) inset;
+    position: relative;
+  }
+  .phone-frame::before {
+    content: '';
+    position: absolute;
+    top: 16px; left: 50%;
+    transform: translateX(-50%);
+    width: 70px; height: 6px;
+    background: #000;
+    border-radius: 4px;
+    z-index: 2;
+  }
+  .phone-frame img {
+    width: 100%;
+    display: block;
+    border-radius: 20px;
+    aspect-ratio: 390 / 844;
+    object-fit: cover;
+    background: #1a1a1a;
+  }
+  .phone-frame .screen-label {
+    margin-top: 0.75rem;
+    text-align: center;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 900px) {
+    .modal-screens.layout-blueroll { grid-template-columns: 1fr 1fr; }
+    .modal-screens.layout-blueroll .mobile-showcase { grid-column: 1 / -1; }
+  }
+
   @media (max-width: 768px) {
     .modal-screens { grid-template-columns: 1fr; }
+    .modal-screens.layout-blueroll { grid-template-columns: 1fr; }
     .project-modal-overlay { padding: 1.5rem 1rem; }
+    .phone-frame { width: 160px; }
+    .mobile-trio { gap: 1rem; }
   }
 
   .browser-frame {
@@ -2004,7 +2075,7 @@
         </div>
       </div>
 
-      <a href="https://blueroll.app/" target="_blank" class="live-card">
+      <div class="live-card" onclick="openModal('blurollModal')" style="cursor:pointer;">
         <div class="live-card-header">
           <span class="live-card-type">Full Product</span>
           <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -2017,7 +2088,7 @@
         <div class="live-card-tags">
           <span>Claude Code</span>
         </div>
-      </a>
+      </div>
     </div>
   </div>
 </section>
@@ -2302,6 +2373,72 @@ document.addEventListener('keydown', (e) => {
         </div>
         <img src="docspace-screen-4.png" alt="DocSpace — Financial Health">
         <div class="screen-label">Financial Health — Multi-year Charts</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BlueRoll Modal -->
+<div class="project-modal-overlay" id="blurollModal" onclick="if(event.target===this)closeModal('blurollModal')">
+  <button class="modal-close" onclick="closeModal('blurollModal')">&times;</button>
+  <div class="project-modal">
+    <div class="modal-header">
+      <h2>BlueRoll</h2>
+      <p>Beyond landing pages — full native apps for App Store and Google Play. Digital SFBB checklists for UK restaurants.</p>
+    </div>
+    <div class="modal-links">
+      <a href="https://blueroll.app/" target="_blank" class="modal-link modal-link-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Live Product
+      </a>
+    </div>
+    <div class="modal-screens layout-blueroll">
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">blueroll.app</div>
+        </div>
+        <img src="blueroll-desktop-1.png" alt="BlueRoll — Landing">
+        <div class="screen-label">Landing — Marketing Site</div>
+      </div>
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">blueroll.app</div>
+        </div>
+        <img src="blueroll-desktop-2.png" alt="BlueRoll — NYC Restaurant Grades Map">
+        <div class="screen-label">NYC Guide — Restaurant Grades Map</div>
+      </div>
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">blueroll.app</div>
+        </div>
+        <img src="blueroll-desktop-3.png" alt="BlueRoll — Restaurant Dashboard">
+        <div class="screen-label">Restaurant Dashboard — Daily Operations</div>
+      </div>
+      <div class="mobile-showcase">
+        <div class="mobile-showcase-label">Native Mobile · iOS & Android</div>
+        <div class="mobile-trio">
+          <div class="phone-frame">
+            <img src="blueroll-mobile-1.png" alt="BlueRoll — Home Dashboard">
+            <div class="screen-label">Home — Today's Tasks</div>
+          </div>
+          <div class="phone-frame">
+            <img src="blueroll-mobile-2.png" alt="BlueRoll — Region Picker">
+            <div class="screen-label">Region Picker</div>
+          </div>
+          <div class="phone-frame">
+            <img src="blueroll-mobile-3.png" alt="BlueRoll — Restaurant Grade">
+            <div class="screen-label">Restaurant Grade</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
