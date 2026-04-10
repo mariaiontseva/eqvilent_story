@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <!-- Soft violet / lilac gradient background -->
+    <radialGradient id="bgLilac" cx="0.5" cy="0.45" r="0.75">
+      <stop offset="0" stop-color="#f2e8f7"/>
+      <stop offset="0.5" stop-color="#e5d6f0"/>
+      <stop offset="1" stop-color="#c9b4e0"/>
+    </radialGradient>
+
+    <!-- Subtle warm highlight on top -->
+    <linearGradient id="bgHighlight" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="rgba(255,245,232,0.35)"/>
+      <stop offset="0.45" stop-color="rgba(255,245,232,0)"/>
+    </linearGradient>
+
+    <!-- Phone screen clips -->
+    <clipPath id="clipPhone1">
+      <rect x="-110" y="-237" width="220" height="474" rx="22" ry="22"/>
+    </clipPath>
+    <clipPath id="clipPhone2">
+      <rect x="-110" y="-237" width="220" height="474" rx="22" ry="22"/>
+    </clipPath>
+    <clipPath id="clipPhone3">
+      <rect x="-110" y="-237" width="220" height="474" rx="22" ry="22"/>
+    </clipPath>
+    <clipPath id="clipPhone4">
+      <rect x="-110" y="-237" width="220" height="474" rx="22" ry="22"/>
+    </clipPath>
+
+    <!-- Drop shadow filter for phones -->
+    <filter id="phoneShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="18"/>
+      <feOffset dx="0" dy="14" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.35"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="1000" fill="url(#bgLilac)"/>
+  <rect width="1600" height="1000" fill="url(#bgHighlight)"/>
+
+  <!-- Decorative soft blobs -->
+  <circle cx="220" cy="180" r="120" fill="rgba(255,255,255,0.25)"/>
+  <circle cx="1420" cy="820" r="180" fill="rgba(255,255,255,0.2)"/>
+  <circle cx="1350" cy="150" r="60" fill="rgba(255,255,255,0.3)"/>
+  <circle cx="180" cy="860" r="80" fill="rgba(255,255,255,0.22)"/>
+
+  <!-- Faint curves suggesting hormone waves -->
+  <g stroke="rgba(255,255,255,0.22)" stroke-width="2" fill="none">
+    <path d="M 0 600 Q 300 520 600 600 T 1200 600 T 1600 600"/>
+    <path d="M 0 680 Q 300 610 600 680 T 1200 680 T 1600 680" stroke="rgba(255,255,255,0.14)"/>
+  </g>
+
+  <!-- 4 phones fanned -->
+
+  <!-- Phone 1 — leftmost, rotated -6 -->
+  <g transform="translate(340, 510) rotate(-6)" filter="url(#phoneShadow)">
+    <rect x="-120" y="-247" width="240" height="494" rx="30" ry="30" fill="#0b0a0d" stroke="#2a242f" stroke-width="2"/>
+    <rect x="-40" y="-239" width="80" height="6" rx="3" fill="#000"/>
+    <image xlink:href="essence-mobile-1.png" x="-110" y="-237" width="220" height="474"
+           preserveAspectRatio="xMidYMin slice" clip-path="url(#clipPhone1)"/>
+  </g>
+
+  <!-- Phone 2 — rotated -2 -->
+  <g transform="translate(640, 490) rotate(-2)" filter="url(#phoneShadow)">
+    <rect x="-120" y="-247" width="240" height="494" rx="30" ry="30" fill="#0b0a0d" stroke="#2a242f" stroke-width="2"/>
+    <rect x="-40" y="-239" width="80" height="6" rx="3" fill="#000"/>
+    <image xlink:href="essence-mobile-2.png" x="-110" y="-237" width="220" height="474"
+           preserveAspectRatio="xMidYMid slice" clip-path="url(#clipPhone2)"/>
+  </g>
+
+  <!-- Phone 3 — rotated +2 -->
+  <g transform="translate(940, 490) rotate(2)" filter="url(#phoneShadow)">
+    <rect x="-120" y="-247" width="240" height="494" rx="30" ry="30" fill="#0b0a0d" stroke="#2a242f" stroke-width="2"/>
+    <rect x="-40" y="-239" width="80" height="6" rx="3" fill="#000"/>
+    <image xlink:href="essence-mobile-3.png" x="-110" y="-237" width="220" height="474"
+           preserveAspectRatio="xMidYMin slice" clip-path="url(#clipPhone3)"/>
+  </g>
+
+  <!-- Phone 4 — rightmost, rotated +6 -->
+  <g transform="translate(1240, 510) rotate(6)" filter="url(#phoneShadow)">
+    <rect x="-120" y="-247" width="240" height="494" rx="30" ry="30" fill="#0b0a0d" stroke="#2a242f" stroke-width="2"/>
+    <rect x="-40" y="-239" width="80" height="6" rx="3" fill="#000"/>
+    <image xlink:href="essence-mobile-4.png" x="-110" y="-237" width="220" height="474"
+           preserveAspectRatio="xMidYMin slice" clip-path="url(#clipPhone4)"/>
+  </g>
+
+  <!-- Wordmark at bottom -->
+  <text x="800" y="920" font-family="Georgia, 'Times New Roman', serif" font-size="48"
+        fill="rgba(70,45,90,0.7)" font-style="italic" font-weight="300"
+        text-anchor="middle" letter-spacing="1">Essence</text>
+  <text x="800" y="955" font-family="'Courier New', monospace" font-size="13"
+        fill="rgba(70,45,90,0.55)" text-anchor="middle" letter-spacing="5">CYCLE SYNCING · NATIVE APP</text>
+</svg>

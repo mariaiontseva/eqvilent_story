@@ -1386,13 +1386,28 @@
     gap: 2rem;
   }
 
-  /* BlueRoll layout — 3 desktop screens on top, mobile trio below */
+  /* 3-desktop + mobile-showcase layout (BlueRoll) */
   .modal-screens.layout-blueroll {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1.5rem;
   }
   .modal-screens.layout-blueroll .mobile-showcase {
     grid-column: 1 / -1;
+  }
+
+  /* 2-desktop (larger) + mobile-showcase layout (Essence) */
+  .modal-screens.layout-essence {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .modal-screens.layout-essence .mobile-showcase {
+    grid-column: 1 / -1;
+  }
+  .modal-screens.layout-essence .phone-frame {
+    width: 180px;
+  }
+  .modal-screens.layout-essence .mobile-trio {
+    gap: 1.5rem;
   }
 
   .mobile-showcase {
@@ -1445,13 +1460,31 @@
     border-radius: 4px;
     z-index: 2;
   }
-  .phone-frame img {
+  .phone-screen {
     width: 100%;
-    display: block;
-    border-radius: 20px;
     aspect-ratio: 390 / 844;
-    object-fit: cover;
+    border-radius: 20px;
     background: #1a1a1a;
+    overflow: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(196,149,106,0.3) transparent;
+    -webkit-overflow-scrolling: touch;
+  }
+  .phone-screen::-webkit-scrollbar {
+    width: 4px;
+  }
+  .phone-screen::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .phone-screen::-webkit-scrollbar-thumb {
+    background: rgba(196,149,106,0.25);
+    border-radius: 2px;
+  }
+  .phone-screen img {
+    width: 100%;
+    height: auto;
+    display: block;
   }
   .phone-frame .screen-label {
     margin-top: 0.75rem;
@@ -1468,7 +1501,8 @@
 
   @media (max-width: 768px) {
     .modal-screens { grid-template-columns: 1fr; }
-    .modal-screens.layout-blueroll { grid-template-columns: 1fr; }
+    .modal-screens.layout-blueroll,
+    .modal-screens.layout-essence { grid-template-columns: 1fr; }
     .project-modal-overlay { padding: 1.5rem 1rem; }
     .phone-frame { width: 160px; }
     .mobile-trio { gap: 1rem; }
@@ -1522,6 +1556,236 @@
     font-weight: 400;
     background: #1a1a1a;
     border-top: 1px solid var(--border);
+  }
+
+  /* Slide frame — for presentation decks, no browser bar */
+  .slide-frame {
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 12px 36px rgba(0,0,0,0.35);
+    position: relative;
+  }
+  .slide-frame::before {
+    content: attr(data-slide);
+    position: absolute;
+    top: 10px; left: 12px;
+    font-size: 0.6rem;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+    z-index: 2;
+    padding: 3px 8px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 3px;
+    backdrop-filter: blur(4px);
+  }
+  .slide-frame img {
+    width: 100%;
+    display: block;
+  }
+  .slide-frame .screen-label {
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    background: #1a1a1a;
+    border-top: 1px solid var(--border);
+  }
+
+  .deck-divider {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    color: var(--accent);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-family: 'Courier New', monospace;
+  }
+  .deck-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(196,149,106,0.4), transparent);
+  }
+
+  /* LinkedIn Article Frame */
+  .linkedin-frame {
+    grid-column: 1 / -1;
+    background: #1b1f23;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border-light);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+  }
+  .linkedin-header {
+    background: #283e4a;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #1b1f23;
+  }
+  .linkedin-header .li-logo {
+    width: 28px; height: 28px;
+    background: #fff;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0077b5;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+    font-style: italic;
+  }
+  .linkedin-header .li-searchbar {
+    flex: 0 0 280px;
+    background: #eaf1f9;
+    border-radius: 3px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 12px;
+    color: #6a7b85;
+    font-family: Arial, sans-serif;
+  }
+  .linkedin-header .li-nav {
+    display: flex;
+    gap: 18px;
+    margin-left: auto;
+    color: rgba(255,255,255,0.65);
+    font-size: 11px;
+    font-family: Arial, sans-serif;
+    letter-spacing: 0.3px;
+  }
+  .linkedin-header .li-nav span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+  }
+  .linkedin-header .li-nav .dot {
+    width: 16px; height: 16px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 3px;
+  }
+
+  .linkedin-article-meta {
+    background: #fff;
+    padding: 20px 28px 18px;
+    border-bottom: 1px solid #e6e9ec;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .linkedin-avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c49d6c, #8a6a48);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    flex-shrink: 0;
+  }
+  .linkedin-author-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .linkedin-author-name {
+    color: #000;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .linkedin-author-title {
+    color: #666;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+  .linkedin-author-meta {
+    color: #888;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    margin-top: 4px;
+  }
+  .linkedin-follow {
+    background: #0a66c2;
+    color: #fff;
+    border-radius: 16px;
+    padding: 6px 16px;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    border: none;
+  }
+
+  .linkedin-body {
+    background: #fff;
+    max-height: 560px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(10,102,194,0.3) transparent;
+  }
+  .linkedin-body::-webkit-scrollbar {
+    width: 8px;
+  }
+  .linkedin-body::-webkit-scrollbar-track {
+    background: #f3f3f3;
+  }
+  .linkedin-body::-webkit-scrollbar-thumb {
+    background: rgba(10,102,194,0.3);
+    border-radius: 4px;
+  }
+  .linkedin-body img {
+    width: 100%;
+    display: block;
+  }
+
+  .linkedin-engagement {
+    background: #fff;
+    padding: 14px 28px;
+    border-top: 1px solid #e6e9ec;
+    display: flex;
+    gap: 24px;
+    color: #666;
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .linkedin-engagement .li-action {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .linkedin-engagement .li-count {
+    margin-left: auto;
+    color: #0a66c2;
+    font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    .linkedin-header .li-searchbar { display: none; }
+    .linkedin-header .li-nav { display: none; }
+    .linkedin-article-meta { padding: 16px 18px 14px; }
+    .linkedin-avatar { width: 44px; height: 44px; font-size: 18px; }
+    .linkedin-engagement { padding: 12px 18px; gap: 16px; font-size: 11px; }
   }
 
   /* === TOOLS GRID === */
@@ -2045,20 +2309,20 @@
         </div>
       </div>
 
-      <a href="https://web-production-5a50.up.railway.app/" class="live-card" target="_blank">
+      <div class="live-card" onclick="openModal('blurollModal')" style="cursor:pointer;">
         <div class="live-card-header">
-          <span class="live-card-type">Design + Code</span>
-          <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          <span class="live-card-type">Full Product</span>
+          <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="live-card-preview-wrap">
-          <img src="trading-cover.png" alt="Trading Bot Dashboard">
+          <img src="blueroll-cover.png" alt="BlueRoll App">
         </div>
-        <h3>Crypto Trading Bot</h3>
-        <p>Real-time trading automation dashboard with strategy engine, multi-asset monitoring, and paper trading. Built with Claude Code in a weekend.</p>
+        <h3>BlueRoll</h3>
+        <p>Beyond landing pages — full native apps for App Store and Google Play, currently in review. Digital SFBB checklists for UK restaurants.</p>
         <div class="live-card-tags">
           <span>Claude Code</span>
         </div>
-      </a>
+      </div>
 
       <div class="live-card" onclick="openModal('docspaceModal')" style="cursor:pointer;">
         <div class="live-card-header">
@@ -2075,20 +2339,72 @@
         </div>
       </div>
 
-      <div class="live-card" onclick="openModal('blurollModal')" style="cursor:pointer;">
+      <div class="live-card" onclick="openModal('essenceModal')" style="cursor:pointer;">
         <div class="live-card-header">
-          <span class="live-card-type">Full Product</span>
+          <span class="live-card-type">Design · Research · Strategy</span>
           <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </div>
         <div class="live-card-preview-wrap">
-          <img src="blueroll-cover.png" alt="BlueRoll App">
+          <img src="essence-cover.png" alt="Essence App">
         </div>
-        <h3>BlueRoll</h3>
-        <p>Beyond landing pages — full native apps for App Store and Google Play, currently in review. Digital SFBB checklists for UK restaurants.</p>
+        <h3>Essence</h3>
+        <p>Native iOS & Android cycle-syncing app. Helps women align work, eating, and exercise with their hormonal phases. Research-led product design.</p>
+        <div class="live-card-tags">
+          <span>Figma</span>
+          <span>Product Analytics</span>
+          <span>Competitive Research</span>
+          <span>Customer Development</span>
+        </div>
+      </div>
+
+      <div class="live-card" onclick="openModal('mitocholineModal')" style="cursor:pointer;">
+        <div class="live-card-header">
+          <span class="live-card-type">Marketing · Strategy · Design</span>
+          <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="live-card-preview-wrap">
+          <img src="mitocholine-cover.png" alt="Mitocholine">
+        </div>
+        <h3>Mitocholine</h3>
+        <p>UK biotech startup developing metabolic substrate complexes for cognitive health. Landing page, pitch deck, and marketing campaign.</p>
+        <div class="live-card-tags">
+          <span>Landing Page</span>
+          <span>Marketing Strategy</span>
+          <span>Marketing Materials</span>
+        </div>
+      </div>
+
+      <a href="https://web-production-5a50.up.railway.app/" class="live-card" target="_blank">
+        <div class="live-card-header">
+          <span class="live-card-type">Design + Code</span>
+          <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </div>
+        <div class="live-card-preview-wrap">
+          <img src="trading-cover.png" alt="Trading Bot Dashboard">
+        </div>
+        <h3>Crypto Trading Bot</h3>
+        <p>Real-time trading automation dashboard with strategy engine, multi-asset monitoring, and paper trading. Built with Claude Code in a weekend.</p>
         <div class="live-card-tags">
           <span>Claude Code</span>
         </div>
-      </div>
+      </a>
+
+      <a href="https://plantapp.pro/" target="_blank" class="live-card">
+        <div class="live-card-header">
+          <span class="live-card-type">App Design &amp; Landing Page</span>
+          <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </div>
+        <div class="live-card-preview-wrap">
+          <img src="plantapp-cover.png" alt="PlantApp">
+        </div>
+        <h3>PlantApp</h3>
+        <p>Native plant identification &amp; care app. App design and landing page design.</p>
+        <div class="live-card-tags">
+          <span>App Design</span>
+          <span>Landing Page</span>
+          <span>Figma</span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -2427,17 +2743,166 @@ document.addEventListener('keydown', (e) => {
         <div class="mobile-showcase-label">Native Mobile · iOS & Android</div>
         <div class="mobile-trio">
           <div class="phone-frame">
-            <img src="blueroll-mobile-1.png" alt="BlueRoll — Home Dashboard">
+            <div class="phone-screen"><img src="blueroll-mobile-1.png" alt="BlueRoll — Home Dashboard"></div>
             <div class="screen-label">Home — Today's Tasks</div>
           </div>
           <div class="phone-frame">
-            <img src="blueroll-mobile-2.png" alt="BlueRoll — Region Picker">
+            <div class="phone-screen"><img src="blueroll-mobile-2.png" alt="BlueRoll — Region Picker"></div>
             <div class="screen-label">Region Picker</div>
           </div>
           <div class="phone-frame">
-            <img src="blueroll-mobile-3.png" alt="BlueRoll — Restaurant Grade">
+            <div class="phone-screen"><img src="blueroll-mobile-3.png" alt="BlueRoll — Restaurant Grade"></div>
             <div class="screen-label">Restaurant Grade</div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Essence Modal -->
+<div class="project-modal-overlay" id="essenceModal" onclick="if(event.target===this)closeModal('essenceModal')">
+  <button class="modal-close" onclick="closeModal('essenceModal')">&times;</button>
+  <div class="project-modal">
+    <div class="modal-header">
+      <h2>Essence</h2>
+      <p>Research-led product work — user interviews, analytics instrumentation, and discovery workshops feeding into a native mobile app.</p>
+    </div>
+    <div class="modal-links">
+      <a href="https://www.theessence.app/" target="_blank" class="modal-link modal-link-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Live Product
+      </a>
+    </div>
+    <div class="modal-screens layout-essence">
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">mixpanel.com · Essence Dashboard</div>
+        </div>
+        <img src="essence-desktop-1.png" alt="Essence — Mixpanel Subscription Funnel">
+        <div class="screen-label">Mixpanel — Onboarding & Subscription Funnel</div>
+      </div>
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">docs.google.com · User Interviews</div>
+        </div>
+        <img src="essence-desktop-2.png" alt="Essence — User Interviews">
+        <div class="screen-label">User Interviews — Raw Findings</div>
+      </div>
+      <div class="mobile-showcase">
+        <div class="mobile-showcase-label">Native App · iOS & Android</div>
+        <div class="mobile-trio">
+          <div class="phone-frame">
+            <div class="phone-screen"><img src="essence-mobile-1.png" alt="Essence — Home · Cycle Day"></div>
+            <div class="screen-label">Home — Cycle Day</div>
+          </div>
+          <div class="phone-frame">
+            <div class="phone-screen"><img src="essence-mobile-2.png" alt="Essence — Hormone Snapshot"></div>
+            <div class="screen-label">Hormone Snapshot</div>
+          </div>
+          <div class="phone-frame">
+            <div class="phone-screen"><img src="essence-mobile-3.png" alt="Essence — Productivity Forecast"></div>
+            <div class="screen-label">Productivity Forecast</div>
+          </div>
+          <div class="phone-frame">
+            <div class="phone-screen"><img src="essence-mobile-4.png" alt="Essence — Symptoms & Analytics"></div>
+            <div class="screen-label">Symptoms & Analytics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mitocholine Modal -->
+<div class="project-modal-overlay" id="mitocholineModal" onclick="if(event.target===this)closeModal('mitocholineModal')">
+  <button class="modal-close" onclick="closeModal('mitocholineModal')">&times;</button>
+  <div class="project-modal">
+    <div class="modal-header">
+      <h2>Mitocholine</h2>
+      <p>UK biotech startup developing MiBrain™, a metabolic substrate complex targeting the brain energy gap behind age-related cognitive decline. Scope: landing page, pitch deck, and LinkedIn thought-leadership campaign.</p>
+    </div>
+    <div class="modal-screens">
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">mitocholine.com</div>
+        </div>
+        <img src="mitocholine-landing-1.png" alt="Mitocholine — Landing Page Hero">
+        <div class="screen-label">Landing Page — Hero</div>
+      </div>
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">mitocholine.com</div>
+        </div>
+        <img src="mitocholine-landing-2.png" alt="Mitocholine — The Science Section">
+        <div class="screen-label">Landing Page — The Science</div>
+      </div>
+
+      <div class="deck-divider">Pitch Deck</div>
+
+      <div class="slide-frame" data-slide="Slide 01">
+        <img src="mitocholine-slide-1.png" alt="Mitocholine — Age Later With Mitocholine">
+        <div class="screen-label">Age Later With Mitocholine</div>
+      </div>
+      <div class="slide-frame" data-slide="Slide 02">
+        <img src="mitocholine-slide-2.png" alt="Mitocholine — MiBrain vs Competition">
+        <div class="screen-label">MiBrain™ vs Competition</div>
+      </div>
+      <div class="slide-frame" data-slide="Slide 03">
+        <img src="mitocholine-slide-3.png" alt="Mitocholine — Market Validation">
+        <div class="screen-label">Market Validation — 24-Month Programme</div>
+      </div>
+      <div class="slide-frame" data-slide="Slide 04">
+        <img src="mitocholine-slide-4.png" alt="Mitocholine — Route to Market">
+        <div class="screen-label">Route to Market — 2026–2029</div>
+      </div>
+
+      <div class="deck-divider">LinkedIn Article · Marketing Campaign</div>
+
+      <div class="linkedin-frame">
+        <div class="linkedin-header">
+          <div class="li-logo">in</div>
+          <div class="li-searchbar">Search</div>
+          <div class="li-nav">
+            <span><div class="dot"></div>Home</span>
+            <span><div class="dot"></div>Network</span>
+            <span><div class="dot"></div>Jobs</span>
+            <span><div class="dot"></div>Messaging</span>
+          </div>
+        </div>
+        <div class="linkedin-article-meta">
+          <div class="linkedin-avatar">L</div>
+          <div class="linkedin-author-info">
+            <div class="linkedin-author-name">Larisa Andreeva</div>
+            <div class="linkedin-author-title">CEO, Mitocholine Ltd · Bridging the Brain Energy Gap</div>
+            <div class="linkedin-author-meta">Published article · 8 min read · March 2026</div>
+          </div>
+          <button class="linkedin-follow">+ Follow</button>
+        </div>
+        <div class="linkedin-body">
+          <img src="mitocholine-article-1.png" alt="Brain Energy Gap article — page 1">
+          <img src="mitocholine-article-2.png" alt="Brain Energy Gap article — page 2">
+          <img src="mitocholine-article-3.png" alt="Brain Energy Gap article — page 3">
+          <img src="mitocholine-article-4.png" alt="Brain Energy Gap article — page 4">
+        </div>
+        <div class="linkedin-engagement">
+          <div class="li-action">👍 Like</div>
+          <div class="li-action">💬 Comment</div>
+          <div class="li-action">↗ Repost</div>
+          <div class="li-action">✉ Send</div>
+          <div class="li-count">1,247 reactions · 184 comments</div>
         </div>
       </div>
     </div>

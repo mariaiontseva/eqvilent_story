@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="plantBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e1812"/>
+      <stop offset="0.55" stop-color="#171208"/>
+      <stop offset="1" stop-color="#0f0a06"/>
+    </linearGradient>
+    <radialGradient id="plantGlow" cx="0.7" cy="0.5" r="0.6">
+      <stop offset="0" stop-color="rgba(140,180,120,0.2)"/>
+      <stop offset="0.6" stop-color="rgba(196,149,106,0.05)"/>
+      <stop offset="1" stop-color="rgba(0,0,0,0)"/>
+    </radialGradient>
+    <pattern id="plantGrid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(196,149,106,0.05)" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="leafGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9fc98a"/>
+      <stop offset="1" stop-color="#5d8c4a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#plantBg)"/>
+  <rect width="1600" height="1000" fill="url(#plantGrid)"/>
+  <circle cx="1180" cy="500" r="480" fill="url(#plantGlow)"/>
+
+  <!-- Stylized monstera / plant silhouette on the right -->
+  <g transform="translate(1180, 500)" fill="none">
+    <!-- Stem -->
+    <path d="M 0 400 Q -20 200 0 -50 Q 20 -250 -10 -380" stroke="url(#leafGrad)" stroke-width="6" stroke-linecap="round"/>
+    <!-- Left leaves -->
+    <path d="M 0 50 Q -180 0 -240 -80 Q -160 -30 -20 20 Z" fill="url(#leafGrad)" opacity="0.85"/>
+    <path d="M 0 -100 Q -200 -130 -260 -220 Q -170 -170 -15 -130 Z" fill="url(#leafGrad)" opacity="0.7"/>
+    <path d="M 0 -230 Q -170 -260 -210 -340 Q -130 -290 -10 -260 Z" fill="url(#leafGrad)" opacity="0.55"/>
+    <!-- Right leaves -->
+    <path d="M 0 -50 Q 200 -90 260 -170 Q 170 -130 15 -80 Z" fill="url(#leafGrad)" opacity="0.75"/>
+    <path d="M 0 -180 Q 180 -220 220 -310 Q 140 -260 10 -220 Z" fill="url(#leafGrad)" opacity="0.6"/>
+    <!-- Leaf veins suggestions -->
+    <path d="M -20 10 Q -100 -10 -180 -40" stroke="rgba(30,40,25,0.3)" stroke-width="2"/>
+    <path d="M -15 -110 Q -100 -140 -200 -180" stroke="rgba(30,40,25,0.3)" stroke-width="2"/>
+  </g>
+
+  <!-- Left side typography -->
+  <g transform="translate(100, 410)">
+    <text x="0" y="0" font-family="'Courier New', monospace" font-size="20"
+          fill="rgba(196,149,106,0.7)" letter-spacing="6">PLANT CARE · NATIVE APP</text>
+
+    <text x="0" y="140" font-family="Georgia, 'Times New Roman', serif" font-size="190"
+          fill="#f4e8d4" font-style="italic" font-weight="300" letter-spacing="-4">PlantApp</text>
+
+    <text x="0" y="210" font-family="Georgia, serif" font-size="32"
+          fill="rgba(244,232,212,0.65)" font-style="italic" font-weight="300">identify, diagnose, grow</text>
+
+    <g transform="translate(0, 290)">
+      <rect x="0" y="0" width="120" height="38" rx="19" fill="none" stroke="rgba(196,149,106,0.4)" stroke-width="1"/>
+      <text x="60" y="25" font-family="'Courier New', monospace" font-size="14"
+            fill="rgba(244,232,212,0.75)" text-anchor="middle" letter-spacing="2">iOS</text>
+
+      <rect x="140" y="0" width="140" height="38" rx="19" fill="none" stroke="rgba(196,149,106,0.4)" stroke-width="1"/>
+      <text x="210" y="25" font-family="'Courier New', monospace" font-size="14"
+            fill="rgba(244,232,212,0.75)" text-anchor="middle" letter-spacing="2">ANDROID</text>
+    </g>
+  </g>
+</svg>
