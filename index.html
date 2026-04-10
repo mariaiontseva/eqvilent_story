@@ -1989,7 +1989,7 @@
         </div>
       </a>
 
-      <a href="https://docspace.uk/" target="_blank" class="live-card">
+      <div class="live-card" onclick="openModal('docspaceModal')" style="cursor:pointer;">
         <div class="live-card-header">
           <span class="live-card-type">Full Product</span>
           <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -2002,7 +2002,7 @@
         <div class="live-card-tags">
           <span>Claude Code</span>
         </div>
-      </a>
+      </div>
 
       <a href="https://blueroll.app/" target="_blank" class="live-card">
         <div class="live-card-header">
@@ -2243,6 +2243,65 @@ document.addEventListener('keydown', (e) => {
         </div>
         <img src="sq-screen-4.png" alt="Post Preview & Comments">
         <div class="screen-label">Post Preview & Comments</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DocSpace Modal -->
+<div class="project-modal-overlay" id="docspaceModal" onclick="if(event.target===this)closeModal('docspaceModal')">
+  <button class="modal-close" onclick="closeModal('docspaceModal')">&times;</button>
+  <div class="project-modal">
+    <div class="modal-header">
+      <h2>DocSpace</h2>
+      <p>AI business intelligence on 5.5 million UK companies. Risk scoring, people graphs, smart reports, and bulk document access.</p>
+    </div>
+    <div class="modal-links">
+      <a href="https://docspace.uk/" target="_blank" class="modal-link modal-link-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Live Product
+      </a>
+    </div>
+    <div class="modal-screens">
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">docspace.uk</div>
+        </div>
+        <img src="docspace-screen-1.png" alt="DocSpace — Homepage">
+        <div class="screen-label">Homepage — Search 5.5M UK Companies</div>
+      </div>
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">docspace.uk</div>
+        </div>
+        <img src="docspace-screen-2.png" alt="DocSpace — Officer Profile">
+        <div class="screen-label">Officer Profile — Career Timeline</div>
+      </div>
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">docspace.uk</div>
+        </div>
+        <img src="docspace-screen-3.png" alt="DocSpace — Company Dossier">
+        <div class="screen-label">Company Dossier — Overview</div>
+      </div>
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">docspace.uk</div>
+        </div>
+        <img src="docspace-screen-4.png" alt="DocSpace — Financial Health">
+        <div class="screen-label">Financial Health — Multi-year Charts</div>
       </div>
     </div>
   </div>
