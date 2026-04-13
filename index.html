@@ -1410,6 +1410,12 @@
     gap: 1.5rem;
   }
 
+  /* 1-desktop + 2-mobile layout (PlantApp) */
+  .modal-screens.layout-plantapp {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
   .mobile-showcase {
     margin-top: 1rem;
     background: linear-gradient(135deg, rgba(196,149,106,0.07) 0%, rgba(196,149,106,0.02) 100%);
@@ -2374,22 +2380,7 @@
         </div>
       </div>
 
-      <a href="https://web-production-5a50.up.railway.app/" class="live-card" target="_blank">
-        <div class="live-card-header">
-          <span class="live-card-type">Design + Code</span>
-          <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-        </div>
-        <div class="live-card-preview-wrap">
-          <img src="trading-cover.png" alt="Trading Bot Dashboard">
-        </div>
-        <h3>Crypto Trading Bot</h3>
-        <p>Real-time trading automation dashboard with strategy engine, multi-asset monitoring, and paper trading. Built with Claude Code in a weekend.</p>
-        <div class="live-card-tags">
-          <span>Claude Code</span>
-        </div>
-      </a>
-
-      <a href="https://plantapp.pro/" target="_blank" class="live-card">
+      <div class="live-card" onclick="openModal('plantappModal')" style="cursor:pointer;">
         <div class="live-card-header">
           <span class="live-card-type">App Design &amp; Landing Page</span>
           <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -2403,6 +2394,21 @@
           <span>App Design</span>
           <span>Landing Page</span>
           <span>Figma</span>
+        </div>
+      </div>
+
+      <a href="https://web-production-5a50.up.railway.app/" class="live-card" target="_blank">
+        <div class="live-card-header">
+          <span class="live-card-type">Design + Code</span>
+          <svg class="github-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </div>
+        <div class="live-card-preview-wrap">
+          <img src="trading-cover.png" alt="Trading Bot Dashboard">
+        </div>
+        <h3>Crypto Trading Bot</h3>
+        <p>Real-time trading automation dashboard with strategy engine, multi-asset monitoring, and paper trading. Built with Claude Code in a weekend.</p>
+        <div class="live-card-tags">
+          <span>Claude Code</span>
         </div>
       </a>
     </div>
@@ -2591,6 +2597,16 @@ document.addEventListener('keydown', (e) => {
       </a>
     </div>
     <div class="modal-screens">
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">figma.com · SmarterQueue Design System</div>
+        </div>
+        <img src="sq-ds-cover.png" alt="SmarterQueue Design System">
+        <div class="screen-label">Design System</div>
+      </div>
       <div class="browser-frame">
         <div class="browser-bar">
           <div class="browser-dot red"></div>
@@ -2903,6 +2919,48 @@ document.addEventListener('keydown', (e) => {
           <div class="li-action">↗ Repost</div>
           <div class="li-action">✉ Send</div>
           <div class="li-count">1,247 reactions · 184 comments</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PlantApp Modal -->
+<div class="project-modal-overlay" id="plantappModal" onclick="if(event.target===this)closeModal('plantappModal')">
+  <button class="modal-close" onclick="closeModal('plantappModal')">&times;</button>
+  <div class="project-modal">
+    <div class="modal-header">
+      <h2>PlantApp</h2>
+      <p>Native plant identification &amp; care app. App design and landing page design.</p>
+    </div>
+    <div class="modal-links">
+      <a href="https://plantapp.pro/" target="_blank" class="modal-link modal-link-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Live Product
+      </a>
+    </div>
+    <div class="modal-screens layout-plantapp">
+      <div class="browser-frame">
+        <div class="browser-bar">
+          <div class="browser-dot red"></div>
+          <div class="browser-dot yellow"></div>
+          <div class="browser-dot green"></div>
+          <div class="browser-url">plantapp.pro</div>
+        </div>
+        <img src="plantapp-desktop-1.png" alt="PlantApp — Landing">
+        <div class="screen-label">Landing Page</div>
+      </div>
+      <div class="mobile-showcase">
+        <div class="mobile-showcase-label">Native App · iOS &amp; Android</div>
+        <div class="mobile-trio">
+          <div class="phone-frame">
+            <div class="phone-screen"><img src="plantapp-mobile-1.png" alt="PlantApp — My Plants"></div>
+            <div class="screen-label">My Plants — Care Schedule</div>
+          </div>
+          <div class="phone-frame">
+            <div class="phone-screen"><img src="plantapp-mobile-2.png" alt="PlantApp — Plantopedia"></div>
+            <div class="screen-label">Plantopedia — 50,000 Plants</div>
+          </div>
         </div>
       </div>
     </div>
